@@ -3,16 +3,11 @@ from models import Todo, db
 from utils import todo_serializer, generate_response
 import os 
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
 todos = Blueprint('todos', __name__)
-
 
 @todos.route('/', methods=['GET'])
 def get_db_used():
-    return jsonify({'ok':os.environ['VAR_TEST'] })
+    return jsonify({'The API is working !'})
 
 @todos.route('/todos/', methods=['GET'])
 def list_all_todos():

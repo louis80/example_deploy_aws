@@ -1,8 +1,10 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
-
+try:
+    load_dotenv()
+except: 
+    pass
 
 class BaseConfig:
     DEBUG = False

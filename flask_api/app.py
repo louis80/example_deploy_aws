@@ -8,14 +8,6 @@ from utils import generate_response
 app = Flask(__name__)
 
 env_config = os.getenv('FLASK_CONFIG', 'dev')
-print(os.getenv('FLASK_CONFIG', 'dev'))
-# -----------------------
-##env_config = 'dev'
-
-print('\n\n ######################################')
-print(config[env_config])
-print('###################################### \n\n')
-# -----------------------
 
 app.config.from_object(config[env_config])
 db.init_app(app)
@@ -32,6 +24,10 @@ def not_found(e):
 def bad_request(e):
     return generate_response(400, 'Bad request.')
 
+
+@app.errorhandler(500)
+def server_erro(e):
+    return generate_response(500, 'Internal Server Error.')
 
 app.register_blueprint(todos)
 
