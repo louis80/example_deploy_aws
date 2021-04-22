@@ -3,6 +3,9 @@ import "./App.css";
 import Todos from "./components/Todos";
 import ViewToggle from "./components/ViewToggle";
 
+const API_URL = process.env.REACT_APP_API_URL
+console.log('REACT_API_URL : ', API_URL);
+
 export default class App extends Component {
   state = {
     todos: [],
@@ -19,7 +22,7 @@ export default class App extends Component {
         "Content-Type": "application/json"
       }
     };
-    fetch("/todos/" + todo.id, putData)
+    fetch(API_URL+"/todos/" + todo.id, putData)
       .then(response => response.json())
       .then(({ todo }) => {
         todos[index] = { id: todo.id, task: todo.task, done: todo.done };
@@ -37,7 +40,7 @@ export default class App extends Component {
         "Content-Type": "application/json"
       }
     };
-    fetch("/todos/", postData)
+    fetch(API_URL+"/todos/", postData)
       .then(response => response.json())
       .then(({ todo }) => {
         todos.push({ id: todo.id, task: todo.task, done: todo.done });
@@ -53,7 +56,7 @@ export default class App extends Component {
         "Content-Type": "application/json"
       }
     };
-    fetch("/todos/" + todo.id, deleteData)
+    fetch(API_URL+"/todos/" + todo.id, deleteData)
       .then(response => response.json())
       .then(data => {
         if (data.code === 200) {
@@ -74,7 +77,7 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    fetch("/todos/")
+    fetch(API_URL+"/todos/")
       .then(response => response.json())
       .then(data => this.setState({ todos: data }))
       .catch(error => console.log(error));

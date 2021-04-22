@@ -1,4 +1,5 @@
 import os
+from flask_cors import CORS
 from flask import Flask, jsonify
 from config import config
 from models import db
@@ -6,6 +7,7 @@ from blueprints import todos
 from utils import generate_response
 
 app = Flask(__name__)
+CORS(app)
 
 env_config = os.getenv('FLASK_CONFIG', 'dev')
 
