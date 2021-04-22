@@ -16,13 +16,10 @@ class BaseConfig:
 class DevelopmentConfig(BaseConfig):
     basedir = os.path.abspath(os.path.dirname(__file__))
     DEBUG = True
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'dev.db')
-    # ---
     try:
-        SQLALCHEMY_DATABASE_URI = 'postgresql://'+os.environ['USERDB']+':'+os.environ['PASSWORD']+'@'+os.environ['HOST']+'/'+os.environ['USERDB']
+        SQLALCHEMY_DATABASE_URI = 'postgresql://'+os.environ['DB_USER']+':'+os.environ['DB_PASSWORD']+'@'+os.environ['DB_HOST']+'/postgres'
     except:
         SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'dev.db')
-    # ---
 
 class ProductionConfig(BaseConfig):
     basedir = os.path.abspath(os.path.dirname(__file__))

@@ -7,7 +7,7 @@ todos = Blueprint('todos', __name__)
 
 @todos.route('/', methods=['GET'])
 def get_db_used():
-    return jsonify({'The API is working !'})
+    return jsonify({'state':'The API is working !'})
 
 @todos.route('/todos/', methods=['GET'])
 def list_all_todos():
